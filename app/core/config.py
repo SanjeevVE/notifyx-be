@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings
-from typing import Optional
+from typing import Optional, List
 
 
 class Settings(BaseSettings):
@@ -25,8 +25,16 @@ class Settings(BaseSettings):
     # Redis (for queue)
     REDIS_URL: str = "redis://localhost:6379/0"
 
-    # CORS
-    BACKEND_CORS_ORIGINS: list = ["http://localhost:3000"]
+    # Tracking
+    TRACKING_BASE_URL: str = "http://localhost:8000/api/v1/tracking"
+    UNSUBSCRIBE_BASE_URL: str = "http://localhost:8000/unsubscribe"
+
+    # Email sending
+    BATCH_SIZE: int = 50  # Emails per batch
+    SES_SEND_RATE: int = 14  # Emails per second
+
+    # CORS - Allow all origins (set to specific origins in production)
+    BACKEND_CORS_ORIGINS: List[str] = ["*"]
 
     class Config:
         env_file = ".env"

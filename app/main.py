@@ -23,15 +23,41 @@ app = FastAPI(
     title=settings.APP_NAME,
     version=settings.APP_VERSION,
     lifespan=lifespan,
+    description="""
+    Email Communication Platform API
+
+    ## Authentication
+
+    This API uses Bearer token authentication. To test the endpoints:
+
+    1. **Sign up**: Use the `/api/v1/auth/signup` endpoint to create a new account
+    2. **Login**: Use the `/api/v1/auth/login` endpoint to get an access token
+    3. **Authorize**: Click the "Authorize" button (🔓) at the top right and enter: `Bearer <your_token>`
+
+    ### Quick Test Token (Mock)
+    For quick testing, you can use this mock token format:
+    ```
+    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxOTk5OTk5OTk5fQ.placeholder
+    ```
+    Note: For actual API calls, you need a real token from the login endpoint.
+    """,
+    swagger_ui_parameters={
+        "persistAuthorization": True,
+        "displayRequestDuration": True,
+        "filter": True,
+        "tryItOutEnabled": True,
+    },
 )
 
-# Configure CORS
+# Configure CORS - Allow all origins for development
+# For production, restrict to specific domains
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.BACKEND_CORS_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=False,  # Must be False when allow_origins is ["*"]
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+    expose_headers=["*"],  # Expose all headers
 )
 
 # Include API routes

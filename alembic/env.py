@@ -10,7 +10,9 @@ from alembic import context
 # Import your models here
 from app.db.database import Base
 from app.models.user import User, Organization
-from app.models.campaign import Campaign, Message, MessageEvent, Log
+from app.models.campaign import Campaign, CampaignRecipient, Message, MessageEvent, Log
+from app.models.contact import Contact, ContactList, ContactListMembership, UnsubscribeToken
+from app.models.template import EmailTemplate
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

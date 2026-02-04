@@ -16,6 +16,9 @@ AsyncSessionLocal = async_sessionmaker(
     expire_on_commit=False
 )
 
+# Alias for Celery tasks
+async_session_maker = AsyncSessionLocal
+
 # Base class for models
 Base = declarative_base()
 
