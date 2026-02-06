@@ -16,6 +16,8 @@ from app.models.contact import (
     UnsubscribeToken
 )
 from app.models.template import EmailTemplate
+from app.models.contact_field import ContactField, FieldType, SYSTEM_FIELDS, SYSTEM_FIELD_COLUMN_MAP
+from app.models.import_job import ImportJob, ImportJobStatus
 
 __all__ = [
     # User models
@@ -35,6 +37,14 @@ __all__ = [
     "ContactListMembership",
     "ContactStatus",
     "UnsubscribeToken",
+    # Contact field models
+    "ContactField",
+    "FieldType",
+    "SYSTEM_FIELDS",
+    "SYSTEM_FIELD_COLUMN_MAP",
+    # Import models
+    "ImportJob",
+    "ImportJobStatus",
     # Template models
     "EmailTemplate",
 ]

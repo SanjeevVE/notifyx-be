@@ -38,6 +38,7 @@ class Organization(Base):
     campaigns = relationship("Campaign", back_populates="organization")
     contacts = relationship("Contact", back_populates="organization", cascade="all, delete-orphan")
     contact_lists = relationship("ContactList", back_populates="organization", cascade="all, delete-orphan")
+    contact_fields = relationship("ContactField", back_populates="organization", cascade="all, delete-orphan")
     email_templates = relationship("EmailTemplate", back_populates="organization", cascade="all, delete-orphan")
 
 

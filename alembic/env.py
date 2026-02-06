@@ -13,6 +13,8 @@ from app.models.user import User, Organization
 from app.models.campaign import Campaign, CampaignRecipient, Message, MessageEvent, Log
 from app.models.contact import Contact, ContactList, ContactListMembership, UnsubscribeToken
 from app.models.template import EmailTemplate
+from app.models.contact_field import ContactField
+from app.models.import_job import ImportJob
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

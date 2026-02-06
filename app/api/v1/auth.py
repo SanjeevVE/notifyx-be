@@ -88,6 +88,10 @@ async def signup(user_data: UserCreate, db: AsyncSession = Depends(get_db)):
     db.add(organization)
     await db.flush()
 
+    # Seed system fields for the new organization (lazy import to avoid circular dependency)
+    from app.api.v1.contact_fields import seed_system_fields
+    await seed_system_fields(db, organization.id)
+
     # Create user
     hashed_password = get_password_hash(user_data.password)
     user = User(
